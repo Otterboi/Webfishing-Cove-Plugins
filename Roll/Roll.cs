@@ -17,7 +17,7 @@ namespace Roll
 
             RegisterCommand("roll", (player, args) =>
             {
-                if (args.Length == 0 || !int.TryParse(args[0], out _))
+                if (args.Length == 0 || args.Length > 1 || !int.TryParse(args[0], out _))
                 {
                     SendPlayerChatMessage(player, "An integer is required as an argument!");
                     return;
@@ -25,7 +25,7 @@ namespace Roll
                 else
                 {
                     Random random = new Random();
-                    int result = random.Next(int.Parse(args[0]));
+                    int result = random.Next(int.Parse(args[0])) + 1;
                     SendGlobalChatMessage($"{player.Username} rolled a {result}");
                 }
             });
